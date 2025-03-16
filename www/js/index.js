@@ -2,7 +2,14 @@
 document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
-    main();
+     // API de palabras
+ fetch("https://random-word-api.herokuapp.com/word?lang=es&length=5")
+   .then((data) => data.json())
+   .then((word) => {
+     main(word);
+   })
+   .catch((error) => console.error("Error:", error));
+
 
 }
 
@@ -40,15 +47,6 @@ const qwerty = [
   "M",
   "⌫",
 ];
-
-    // API de palabras  
-fetch("https://random-word-api.herokuapp.com/word?lang=es&length=5")
-  .then((data) => data.json())
-  .then((word) => {
-    main(word);
-  })
-  .catch((error) => console.error("Error:", error));
-
     //Constante para crear el tablero
 const crearTablero = (mainContainer) => {
     // Rellenar el tablero columnas(i), filas(j)
